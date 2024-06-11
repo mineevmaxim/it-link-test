@@ -1,6 +1,5 @@
 'use client';
-
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useCallback, useState } from 'react';
 
 interface counterContextType {
     index: number;
@@ -16,8 +15,8 @@ const CounterContext = createContext<counterContextType>({
 
 function CounterProvider({ children }: { children: ReactNode }) {
     const [index, setIndex] = useState(0);
-    const increment = () => setIndex((prev) => prev + 1);
-    const decrement = () => setIndex((prev) => prev - 1);
+    const increment = useCallback(() => setIndex((prev) => prev + 1), []);
+    const decrement = useCallback(() => setIndex((prev) => prev - 1), []);
 
     return (
         <CounterContext.Provider

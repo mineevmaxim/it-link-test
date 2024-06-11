@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, memo } from 'react';
 import Button from '@/components/atoms/Button/Button';
 import Text from '@/components/atoms/Text/Text';
 
@@ -14,4 +14,4 @@ const ButtonText = ({ text, ...otherProps }: ButtonTextProps) => {
     );
 };
 
-export default ButtonText;
+export default memo(ButtonText);

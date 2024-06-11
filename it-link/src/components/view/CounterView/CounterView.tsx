@@ -1,11 +1,14 @@
 'use client';
-
-import { useContext } from 'react';
+import React, { memo, useMemo } from 'react';
 import { CounterContext } from '@/components/organisms/Counter/Counter';
 import ButtonText from '@/components/molecules/ButtonText/ButtonText';
+import Text from '@/components/atoms/Text/Text';
 
 const CounterView = () => {
-    const { index, increment, decrement } = useContext(CounterContext);
+    const { index, increment, decrement } = React.useContext(CounterContext);
+
+    const indexView = useMemo(() => <Text text={index.toString()} />, [index]);
+
     return (
         <div
             style={{
@@ -15,7 +18,7 @@ const CounterView = () => {
                 alignItems: 'center',
             }}
         >
-            <span>{index}</span>
+            {indexView}
             <div style={{ display: 'flex', gap: '16px' }}>
                 <ButtonText
                     onClick={decrement}
@@ -30,4 +33,4 @@ const CounterView = () => {
     );
 };
 
-export default CounterView;
+export default memo(CounterView);
